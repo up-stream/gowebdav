@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"net/http/httputil"
 	"path"
 	"strings"
 )
@@ -66,7 +67,8 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 		return rs, newPathError("Authorize", c.root, rs.StatusCode)
 	}
 
-	log.Println("func req in:", rs.Body)
+	dumpResp, _ := httputil.DumpResponse(rs, true)
+	log.Println("func req in:", dumpResp)
 	return rs, err
 }
 
