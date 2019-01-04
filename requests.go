@@ -151,6 +151,7 @@ func (c *Client) copymove(method string, oldpath string, newpath string, overwri
 func (c *Client) put(path string, stream io.Reader) int {
 	rs, err := c.req("PUT", path, stream, nil)
 	if err != nil {
+		log(fmt.Sprintf("put error:", err.Error()))
 		return 400
 	}
 	defer rs.Body.Close()

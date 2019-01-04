@@ -3,6 +3,7 @@ package gowebdav
 import (
 	"bytes"
 	"encoding/xml"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -339,6 +340,7 @@ func (c *Client) ReadStream(path string) (io.ReadCloser, error) {
 
 // Write writes data to a given path
 func (c *Client) Write(path string, data []byte, _ os.FileMode) error {
+	log(fmt.Sprintf("func Write..."))
 	s := c.put(path, bytes.NewReader(data))
 	switch s {
 
