@@ -78,15 +78,18 @@ func (c *Client) SetTransport(transport http.RoundTripper) {
 func (c *Client) Connect() error {
 	rs, err := c.options("/")
 	if err != nil {
+		log.Println("func options failed...")
 		return err
 	}
 
 	err = rs.Body.Close()
 	if err != nil {
+		log.Println("func Body.Close failed...")
 		return err
 	}
 
 	if rs.StatusCode != 200 {
+		log.Println("status code not 200...")
 		return newPathError("Connect", c.root, rs.StatusCode)
 	}
 
