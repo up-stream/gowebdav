@@ -68,7 +68,7 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 	}
 
 	dumpResp, _ := httputil.DumpResponse(rs, true)
-	log.Println("func req in:", dumpResp)
+	log.Println("func req in:", string(dumpResp))
 	return rs, err
 }
 
