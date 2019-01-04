@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"path"
 	"strings"
@@ -134,7 +135,7 @@ func (c *Client) copymove(method string, oldpath string, newpath string, overwri
 
 	case 207:
 		// TODO handle multistat errors, worst case ...
-		log(fmt.Sprintf(" TODO handle %s - %s multistatus result %s", method, oldpath, String(data)))
+		log.Println(" TODO handle %s - %s multistatus result %s", method, oldpath, String(data))
 
 	case 409:
 		err := c.createParentCollection(newpath)
@@ -151,7 +152,7 @@ func (c *Client) copymove(method string, oldpath string, newpath string, overwri
 func (c *Client) put(path string, stream io.Reader) int {
 	rs, err := c.req("PUT", path, stream, nil)
 	if err != nil {
-		log(fmt.Sprintf("put error:", err.Error()))
+		log.Println("put error:", err.Error())
 		return 400
 	}
 	defer rs.Body.Close()

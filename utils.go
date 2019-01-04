@@ -12,9 +12,11 @@ import (
 	"time"
 )
 
+/*
 func log(msg interface{}) {
 	fmt.Println(msg)
 }
+*/
 
 func newPathError(op string, path string, statusCode int) error {
 	return &os.PathError{
