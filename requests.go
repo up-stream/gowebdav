@@ -44,6 +44,9 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 		return nil, err
 	}
 
+	log.Println("rs.status code in func req:", rs.StatusCode)
+	log.Println("Authenticate:", c.auth.Type())
+
 	if rs.StatusCode == 401 && c.auth.Type() == "NoAuth" {
 		if strings.Index(rs.Header.Get("Www-Authenticate"), "Digest") > -1 {
 			c.auth = &DigestAuth{c.auth.User(), c.auth.Pass(), digestParts(rs)}
