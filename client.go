@@ -341,6 +341,7 @@ func (c *Client) ReadStream(path string) (io.ReadCloser, error) {
 // Write writes data to a given path
 func (c *Client) Write(path string, data []byte, _ os.FileMode) error {
 	log.Println("func Write...")
+	log.Println("func Write in first put...")
 	s := c.put(path, bytes.NewReader(data))
 	switch s {
 
@@ -353,6 +354,7 @@ func (c *Client) Write(path string, data []byte, _ os.FileMode) error {
 			return err
 		}
 
+		log.Println("func Write in second put...")
 		s = c.put(path, bytes.NewReader(data))
 		if s == 200 || s == 201 || s == 204 {
 			return nil

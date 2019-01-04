@@ -63,6 +63,7 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 		return rs, newPathError("Authorize", c.root, rs.StatusCode)
 	}
 
+	log.Println("func req in:", rs.Body)
 	return rs, err
 }
 
@@ -159,6 +160,7 @@ func (c *Client) put(path string, stream io.Reader) int {
 	}
 	defer rs.Body.Close()
 
+	log.Println("func put status code:", rs.StatusCode)
 	return rs.StatusCode
 }
 
