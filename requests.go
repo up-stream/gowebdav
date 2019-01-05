@@ -24,10 +24,6 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 		r, err = http.NewRequest(method, PathEscape(Join(c.root, path)), bb)
 	}
 
-	log.Println("func req Method:", r.Method)
-	dumpReq, _ := httputil.DumpRequest(r, true)
-	log.Println("func req DumpRequest:", string(dumpReq))
-
 	if err != nil {
 		return nil, err
 	}
@@ -39,6 +35,10 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 			r.Header.Add(k, v)
 		}
 	}
+
+	log.Println("func req Method:", r.Method)
+	dumpReq, _ := httputil.DumpRequest(r, true)
+	log.Println("func req DumpRequest:", string(dumpReq))
 
 	if intercept != nil {
 		intercept(r)
