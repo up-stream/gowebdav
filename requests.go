@@ -38,6 +38,7 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 
 	r.Header.Add("Accept", "*/*")
 	r.Header.Add("Content-Length", "4948")
+	r.Header.Add("Expect", "100-continue")
 
 	log.Println("func req Method:", r.Method)
 	dumpReq, _ := httputil.DumpRequest(r, true)
