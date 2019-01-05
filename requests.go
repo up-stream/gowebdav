@@ -158,7 +158,8 @@ func (c *Client) copymove(method string, oldpath string, newpath string, overwri
 
 func (c *Client) put(path string, stream io.Reader) int {
 	log.Println("func put...")
-	rs, err := c.req("PUT", path, stream, nil)
+	//rs, err := c.req("PUT", path, stream, nil)
+	rs, err := c.req("POST", path, stream, nil)
 	if err != nil {
 		log.Println("put error:", err.Error())
 		return 400
