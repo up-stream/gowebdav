@@ -6,7 +6,6 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"net/http/httputil"
 	"path"
 	"strings"
 )
@@ -40,9 +39,9 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 	//r.Header.Add("Content-Length", len(string(bb)))
 	//r.Header.Add("Expect", "100-continue")
 
-	log.Println("func req Method:", r.Method)
-	dumpReq, _ := httputil.DumpRequest(r, true)
-	log.Println("func req DumpRequest:", string(dumpReq))
+	//log.Println("func req Method:", r.Method)
+	//dumpReq, _ := httputil.DumpRequest(r, true)
+	//log.Println("func req DumpRequest:", string(dumpReq))
 
 	if intercept != nil {
 		intercept(r)
@@ -75,8 +74,8 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 		return rs, newPathError("Authorize", c.root, rs.StatusCode)
 	}
 
-	dumpResp, _ := httputil.DumpResponse(rs, true)
-	log.Println("func req DumpResponse:", string(dumpResp))
+	//dumpResp, _ := httputil.DumpResponse(rs, true)
+	//log.Println("func req DumpResponse:", string(dumpResp))
 	return rs, err
 }
 
