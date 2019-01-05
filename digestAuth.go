@@ -131,8 +131,8 @@ func getDigestAuthorization(digestParts map[string]string) string {
 		)
 	}
 
-	authorization := fmt.Sprintf(`Digest username="%s", realm="%s", nonce="%s", uri="%s", nc=%v, cnonce="%s", response="%s"`,
-		d["username"], d["realm"], d["nonce"], d["uri"], nonceCount, cnonce, response)
+	authorization := fmt.Sprintf(`Digest username="%s", realm="%s", nonce="%s", uri="%s", nc=%v, cnonce="%s", response="%s", algorithm="%s"`,
+		d["username"], d["realm"], d["nonce"], d["uri"], nonceCount, cnonce, response, d["algorithm"])
 
 	if d["qop"] != "" {
 		authorization += fmt.Sprintf(`, qop=%s`, d["qop"])
