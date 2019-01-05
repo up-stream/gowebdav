@@ -24,6 +24,10 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 		r, err = http.NewRequest(method, PathEscape(Join(c.root, path)), bb)
 	}
 
+	log.Println("func req Method:", r.Method)
+	log.Println("func req Header:", r.Header)
+	log.Println("func req Body:", r.Body)
+
 	if err != nil {
 		return nil, err
 	}
