@@ -36,7 +36,7 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 		}
 	}
 
-	r.Header.Add("Content-Type", "audio/mpegurl")
+	r.Header.Add("Content-Type", "application/x-mpegurl")
 	r.Header.Add("Content-Length", "4948")
 
 	log.Println("func req Method:", r.Method)
