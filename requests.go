@@ -11,7 +11,7 @@ import (
 )
 
 func (c *Client) req(method, path string, body io.Reader, intercept func(*http.Request)) (req *http.Response, err error) {
-	log.Println("func req...")
+	//log.Println("func req...")
 	// Tee the body, because if authorization fails we will need to read from it again.
 	var r *http.Request
 	var ba bytes.Buffer
@@ -164,7 +164,7 @@ func (c *Client) copymove(method string, oldpath string, newpath string, overwri
 }
 
 func (c *Client) put(path string, stream io.Reader) int {
-	log.Println("func put...")
+	//log.Println("func put...")
 	rs, err := c.req("PUT", path, stream, nil)
 	//rs, err := c.req("POST", path, stream, nil)
 	if err != nil {
