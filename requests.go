@@ -52,8 +52,7 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 		return nil, err
 	}
 
-	log.Print("r.Method, rs.status code: ", r.Method)
-	log.Println(" : ", rs.StatusCode)
+	log.Print("r.Method, rs.status code: ", r.Method, " : ", rs.StatusCode)
 	//log.Println("Authenticate:", c.auth.Type())
 
 	if rs.StatusCode == 401 && c.auth.Type() == "NoAuth" {
