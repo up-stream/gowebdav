@@ -39,7 +39,7 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 	//r.Header.Add("Content-Length", len(string(bb)))
 	//r.Header.Add("Expect", "100-continue")
 
-	log.Println("func req Method:", r.Method)
+	//log.Println("func req Method:", r.Method)
 	//dumpReq, _ := httputil.DumpRequest(r, true)
 	//log.Println("func req DumpRequest:", string(dumpReq))
 
@@ -52,8 +52,9 @@ func (c *Client) req(method, path string, body io.Reader, intercept func(*http.R
 		return nil, err
 	}
 
-	log.Println("rs.status code in func req:", rs.StatusCode)
-	log.Println("Authenticate:", c.auth.Type())
+	log.Print("r.Method, rs.status code: ", r.Method)
+	log.Println(" : ", rs.StatusCode)
+	//log.Println("Authenticate:", c.auth.Type())
 
 	if rs.StatusCode == 401 && c.auth.Type() == "NoAuth" {
 		if strings.Index(rs.Header.Get("Www-Authenticate"), "Digest") > -1 {
