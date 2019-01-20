@@ -173,7 +173,7 @@ func (c *Client) put(path string, stream io.Reader) int {
 	}
 	defer rs.Body.Close()
 
-	log.Println("func put status code:", rs.StatusCode)
+	//log.Println("func put status code:", rs.StatusCode)
 	return rs.StatusCode
 }
 
